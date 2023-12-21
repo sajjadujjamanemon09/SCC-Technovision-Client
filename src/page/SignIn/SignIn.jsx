@@ -54,9 +54,9 @@ const Login = () => {
     return (
         <Container>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center">
-            <div className="hero md:min-h-[90vh]">
+            <div className="hero md:min-h-[90vh] p-4">
 
-    <div data-aos="zoom-in-up" className="card flex-shrink-0 w-full max-w-md ">
+    <div data-aos="zoom-in-up" className="card flex-shrink-0 w-full max-w-md border border-black ">
     <div className="text-center">
       <h1 className="text-5xl font-bold pt-8">SignIn now!</h1>
       </div>
@@ -86,7 +86,7 @@ const Login = () => {
       <p className="text-center pb-4">Do not have an Account <Link className="text-blue-600 font-bold" to='/signUp'>SignUp</Link> </p>
     </div>
   </div>
-  <div className="w-[100vh]">
+  <div className="w-full">
   <Lottie animationData={lottie} loop={true}/>
   </div>
 

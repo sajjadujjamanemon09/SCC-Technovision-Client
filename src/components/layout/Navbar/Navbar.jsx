@@ -1,30 +1,39 @@
 import { Link, NavLink } from "react-router-dom";
-import { FaUserCheck } from 'react-icons/fa';
+import { FaUserCheck } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 
-
 const Navbar = () => {
-
-  const {user, logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
-    logOut()
-    .then()
-    .catch()
-  }
+    logOut().then().catch();
+  };
 
   const navLinks = (
     <>
-      <li><NavLink to='/'>Home</NavLink></li>
-      <li><NavLink to='/booking'>Booking Now</NavLink></li>
-      <li><NavLink to='/ourTeam'>Our Team</NavLink></li>
-      <li><NavLink to='/about'>About US</NavLink></li>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "bg-amber-600 text-white" : "")}
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/booking">Booking Now</NavLink>
+      </li>
+      <li>
+        <NavLink to="/ourTeam">Our Team</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About US</NavLink>
+      </li>
     </>
   );
 
   return (
-    <div className="navbar my-4 max-w-7xl mx-auto">
+    <div className="navbar top-0 z-50  my-4 max-w-7xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,32 +56,39 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-           {navLinks}
+            {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-3xl font-bold">SCC Technovision Inc</a>
+       <div className="flex items-center gap-2"> <img className="w-12" src="https://iili.io/JAGOe71.png" alt="" />
+        <h2 className="normal-case text-3xl font-bold">
+          SCC Technovision Inc
+        </h2></div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navLinks}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user ? 
+        {user ? (
           <>
-          <span className="pr-4"><img className="rounded-full w-11 h-11" src={user.photoURL} alt="" /></span>
+            <span className="pr-4">
+              <img
+                className="rounded-full w-11 h-11"
+                src={user.photoURL}
+                alt=""
+              />
+            </span>
             <span className="pr-4">{user.displayName}</span>
-          <button onClick={handleSignOut} className="btn btn-outline"><FaUserCheck></FaUserCheck>Log Out</button>
+            <button onClick={handleSignOut} className="btn btn-outline">
+              <FaUserCheck></FaUserCheck>Log Out
+            </button>
           </>
-          
-          :
-          <Link to='/signIn'>
-        <button className="btn btn-outline"><FaUserCheck></FaUserCheck>Login</button>
-        </Link>
-        }
-        
-        
+        ) : (
+          <Link to="/signIn">
+            <button className="btn btn-outline">
+              <FaUserCheck></FaUserCheck>Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
