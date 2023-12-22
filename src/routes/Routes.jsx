@@ -5,6 +5,9 @@ import SignUp from "../page/SignUp/SignUp";
 import ErrorPage from "../page/ErrorPage/ErrorPage";
 import Home from "../page/Home/Home";
 
+import Dashboard from "../components/layout/Dashboard/Dashboard/Dashboard";
+import Reach from "../page/Reach/Reach";
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -13,24 +16,32 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
-        path: 'signIn',
-        element: <SignIn />
+        path: "signIn",
+        element: <SignIn />,
       },
       {
-        path: 'signUp',
+        path: "signUp",
         element: <SignUp />,
       },
-    ]
+      {
+        path: "reach",
+        element: <Reach />,
+      },
+    ],
   },
   {
-    path: '/errorPage',
-    element: <ErrorPage />
-  }
+    path: "dashboard",
+    element: <Dashboard />,
+    // children: [
+    //   {
+    //     path: "/",
+    //     element: <TaskForm />,
+    //   },
+    // ],
+  },
 ]);
-
-
 
 export default routes;

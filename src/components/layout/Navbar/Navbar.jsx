@@ -21,13 +21,10 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/booking">Booking Now</NavLink>
+        <NavLink to="/reach">Reach With Us</NavLink>
       </li>
       <li>
-        <NavLink to="/ourTeam">Our Team</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about">About US</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
     </>
   );
