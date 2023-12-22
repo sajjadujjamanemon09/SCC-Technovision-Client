@@ -18,7 +18,7 @@ const Tasks = () => {
         confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
         if (result.isConfirmed) {
-            const res = await fetch(`http://localhost:5000/toDoTasks/${id}`, {
+            const res = await fetch(`https://scc-technovision-inc-server.vercel.app/toDoTasks/${id}`, {
                 method: 'DELETE'
             });
 

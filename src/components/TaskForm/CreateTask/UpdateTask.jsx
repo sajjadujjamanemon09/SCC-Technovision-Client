@@ -1,34 +1,30 @@
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { FaPlus } from "react-icons/fa6";
 import useTasks from "../../Hook/useTasks";
+import { FaPlus } from "react-icons/fa";
+import toast from "react-hot-toast";
 
-const CreateTask = () => {
+
+const UpdateTask = () => {
     const [ , refetch ] = useTasks();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
-  const handleCreateTask = async (data) => {
-    const res = await fetch("https://scc-technovision-inc-server.vercel.app/toDoTasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (res) {
-      toast.success("Task created successfully");
-      refetch();
-      document.getElementById("my_modal_5").close();
-    }
-    reset();
-  };
-
-  return (
-    <div className="flex justify-between items-center">
-      <div>
-        <h2 className="font-bold text-2xl text-[#3D3D3D]">Tasks</h2>
-      </div>
-      <div>
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  
+    const handleCreateTask = async (UpdateTasks) => {
+      const res = await fetch(`https://scc-technovision-inc-server.vercel.app/toDoTasks${_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(UpdateTasks),
+      });
+      if (res) {
+        toast.success("Task Updated successfully");
+        refetch();
+        document.getElementById("my_modal_5").close();
+      }
+      reset();
+    };
+    return (
+        <div>
         <button
           className="btn bg-amber-600 text-white rounded py-2 px-6 flex items-center gap-2 text-sm"
           onClick={() => document.getElementById("my_modal_5").showModal()}>
@@ -86,8 +82,7 @@ const CreateTask = () => {
           </div>
         </dialog>
       </div>
-    </div>
-  );
+    );
 };
 
-export default CreateTask;
+export default UpdateTask;
