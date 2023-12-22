@@ -7,6 +7,7 @@ import Home from "../page/Home/Home";
 
 import Dashboard from "../components/layout/Dashboard/Dashboard/Dashboard";
 import Reach from "../page/Reach/Reach";
+import PrivateRoutes from "./PrivateRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const routes = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
     // children: [
     //   {
     //     path: "/",

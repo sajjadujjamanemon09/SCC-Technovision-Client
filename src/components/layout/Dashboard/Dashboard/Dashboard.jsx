@@ -8,7 +8,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 const Dashboard = () => {
   return (
     <div className="">
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <div className="w-[400px] p-8">
           <Link to="/">
             <button className="btn">

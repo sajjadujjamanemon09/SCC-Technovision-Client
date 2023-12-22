@@ -35,7 +35,7 @@ const Tasks = () => {
 };
 
   return (
-    <div className="grid gap-2 grid-cols-3 py-8">
+    <div className="grid gap-2 grid-cols-1 md:grid-cols-3 py-8">
       <div>
         <div className="p-4 bg-[#c9c68b] border rounded">
           <div>

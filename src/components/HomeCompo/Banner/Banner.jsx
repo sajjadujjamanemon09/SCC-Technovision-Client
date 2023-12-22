@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div>
@@ -23,9 +25,11 @@ const Banner = () => {
               on what’s important.
             </p>
             <div className="space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+              <Link to='/dashboard'>
               <button className="btn bg-amber-600 text-white">
                 Let’s Explore
               </button>
+              </Link>
             </div>
           </div>
         </div>
