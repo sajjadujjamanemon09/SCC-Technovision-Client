@@ -31,7 +31,7 @@ const User4 = () => {
                     community.
                   </p>
                   <p>
-                    <span className="font-semibold">Key Insights: </span>Showcasing a visually stunning user interface design and gathering feedback from the creative community.
+                    <span className="font-semibold">Key Insights: </span>Showcasing a visually user design and gathering feedback from the creative community.
                   </p>
                 </div>
                 <div className="pt-5 text-base font-semibold leading-7">

@@ -1,88 +1,90 @@
+
+import { toast } from "react-toastify";
+
 import { useForm } from "react-hook-form";
-import useTasks from "../../Hook/useTasks";
-import { FaPlus } from "react-icons/fa";
-import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hook/useAxios";
 
+const UpdateTask = ({ forUpdate }) => {
+  console.log(forUpdate);
+  const axiosPublic = useAxiosPublic();
 
-const UpdateTask = () => {
-    const [ , refetch ] = useTasks();
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  
-    const handleCreateTask = async (UpdateTasks) => {
-      const res = await fetch(`https://scc-technovision-inc-server.vercel.app/toDoTasks${_id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(UpdateTasks),
-      });
-      if (res) {
-        toast.success("Task Updated successfully");
-        refetch();
-        document.getElementById("my_modal_5").close();
-      }
-      reset();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async (data) => {
+    console.log(data);
+
+    const info = {
+      title: data.taskName,
+      status: data.taskStatus,
+      priority: data.priority,
+      date: data.deadline,
+      description: data.description,
     };
-    return (
-        <div>
-        <button
-          className="btn bg-amber-600 text-white rounded py-2 px-6 flex items-center gap-2 text-sm"
-          onClick={() => document.getElementById("my_modal_5").showModal()}>
-          Create Task <FaPlus></FaPlus>
-        </button>
-        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Create New Task</h3>
-            {/* create task form */}
-            <form onSubmit={handleSubmit(handleCreateTask)}>
+    console.log(info);
+    const res = await axiosPublic.patch(`task/updateNow/${forUpdate?._id}`, info);
+    console.log(res.data);
+    toast("task updated successfully");
+  };
+  return (
+    <div className="card shrink-0 w-full max-w-sm  bg-transparent">
+      <h2 className="font-semibold text-3xl">Update Your Task</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
               <input
-                {...register("title", { required: true })}
+
+                {...register("title")}
                 className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-3"
-                placeholder="Task title"/>
+                placeholder="Task title"
+                defaultValue={forUpdate.title}
+                />
                 {errors.title && (
                   <span className="text-red-600 text-xs block">Title is required</span>
                 )}
               
               <input
-                {...register("description", { required: true })}
+                {...register("description")}
                 className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-3"
-                placeholder="Task Description"/>
+                placeholder="Task Description"
+                defaultValue={forUpdate.description}
+                />
               {errors.description && (
                   <span className="text-red-600 text-xs block">Description is required</span>
                 )}
               
               <input
-                {...register("priority", { required: true })}
+                {...register("priority")}
                 className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-3"
-                placeholder="Task priority"/>
+                placeholder="Task priority"
+                defaultValue={forUpdate.priority}
+                />
               {errors.priority && (
                   <span className="text-red-600 text-xs block">Priority is required</span>
                 )}
               <input
-                {...register("status", { required: true })}
+                {...register("date")}
+                className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-3"
+                placeholder="Date"
+                defaultValue={forUpdate.date}
+                type="date"/>
+              {errors.date && (
+                  <span className="text-red-600 text-xs block">Date is required</span>
+                )}
+              <input
+                {...register("status")}
                 className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-5"
                 placeholder="Status"
-                defaultValue={"to-do"}/>
+                defaultValue={"todo"}/>
               <div className="flex justify-end">
                 <input
                   className="bg-amber-600 text-white rounded py-3 px-4 text-sm"
                   type="submit"
-                  value="Create Task"/>
+                  value="Update Task"/>
               </div>
             </form>
-            <div className="modal-action">
-              <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                  {" "}
-                  ✕{" "}
-                </button>
-              </form>
-            </div>
-          </div>
-        </dialog>
-      </div>
-    );
+    </div>
+  );
 };
 
 export default UpdateTask;

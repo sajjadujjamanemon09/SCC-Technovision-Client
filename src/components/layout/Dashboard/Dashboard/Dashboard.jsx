@@ -4,10 +4,14 @@ import { Link, NavLink } from "react-router-dom";
 import Tasks from "../../../TaskForm/TaskForm";
 import CreateTask from "../../../TaskForm/CreateTask/CreateTask";
 import { MdOutlineDashboard } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   return (
     <div className="">
+      <Helmet>
+        <title>SCC Tech | Dashboard</title>
+      </Helmet>
       <div className="flex flex-col md:flex-row">
         <div className="w-[400px] p-8">
           <Link to="/">

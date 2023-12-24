@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import Container from "../../components/ui/Container";
 import lottie from "../SignUp/Animation - 1703140319876.json";
 import Lottie from "lottie-react";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
 
@@ -61,6 +62,9 @@ const SignUp = () => {
 
     return (
         <Container>
+              <Helmet>
+        <title>SCC Tech | Sign Up</title>
+      </Helmet>
         <div className="md:flex justify-evenly items-center">
              <div className="w-[100vh]">
   <Lottie animationData={lottie} loop={true}/>

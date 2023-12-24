@@ -7,6 +7,7 @@ import Container from "../../components/ui/Container";
 import lottie from "../SignIn/Animation - 1703139080544.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet";
 
 
 
@@ -53,6 +54,9 @@ const Login = () => {
 
     return (
         <Container>
+          <Helmet>
+        <title>SCC Tech | Sign In</title>
+      </Helmet>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center">
             <div className="hero md:min-h-[90vh] p-4">
 

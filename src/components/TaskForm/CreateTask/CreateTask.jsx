@@ -8,6 +8,10 @@ const CreateTask = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const handleCreateTask = async (data) => {
+
+    // eslint-disable-next-line no-self-assign
+    data.date = data.date
+
     const res = await fetch("https://scc-technovision-inc-server.vercel.app/toDoTasks", {
       method: "POST",
       headers: {
@@ -63,10 +67,18 @@ const CreateTask = () => {
                   <span className="text-red-600 text-xs block">Priority is required</span>
                 )}
               <input
+                {...register("date", { required: true })}
+                className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-3"
+                placeholder="Date"
+                type="date"/>
+              {errors.date && (
+                  <span className="text-red-600 text-xs block">Date is required</span>
+                )}
+              <input
                 {...register("status", { required: true })}
                 className="border focus:outline-none py-2 px-2 rounded-sm w-full mb-5"
                 placeholder="Status"
-                defaultValue={"to-do"}/>
+                defaultValue={"todo"}/>
               <div className="flex justify-end">
                 <input
                   className="bg-amber-600 text-white rounded py-3 px-4 text-sm"
